@@ -13,7 +13,10 @@ package com.maeq.leetcode;
     - 编译器会对switch结构进行优化 swith case结构比if else 效率更高一些
     - 还有常见的一种方案 用hashmap 将判断条件作为key 结构上看也更加简洁
  */
-
+/*
+    继续分析 罗马数字规则 一个隐含的逻辑
+    如 IV , IX 此类 ，只要前一个字母小于后一个字母 一定是4 9这种情况
+ */
 public class RomanToInteger {
 
     /*
@@ -24,7 +27,7 @@ public class RomanToInteger {
      *  Runtime: 8 ms
      *  Memory Usage: 45 MB
      */
-    public int romanToInt(String s) {
+    public int romanToInt2(String s) {
         if(null == s || s.length() == 0){
             return 0;
         }
@@ -92,15 +95,16 @@ public class RomanToInteger {
     }
 
     // 原始的 第一版方案
+    // 把最后一个elseif 改成else 居然变成了4ms
     /*
      *    Runtime: 3 ms
      *    Memory Usage: 41.9 MB
      */
-    /*
+
     public int romanToInt(String s) {
-        if(null == s || s.length() == 0){
-            return 0;
-        }
+//        if(null == s || s.length() == 0){
+//            return 0;
+//        }
 
         int cnt = 0;
 
@@ -154,16 +158,15 @@ public class RomanToInteger {
             }else if(s.charAt(i) == 'D'){
                 cnt += 500;
                 i++;
-            }else if(s.charAt(i) == 'M'){
+            }else  { // if(s.charAt(i) == 'M'){
                 cnt += 1000;
                 i++;
             }
-
 
         }
 
         return cnt;
     }
-     */
+
 
 }
